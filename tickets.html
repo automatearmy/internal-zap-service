@@ -325,7 +325,7 @@
         const dataElement = document.getElementById('data');
         const totalsElement = document.getElementById('totals-data');
     
-        fetch(`/.netlify/functions/fetch-trello-data?name=${encodeURIComponent('AutomateArmy')}`)
+        fetch(`/.netlify/functions/fetch-trello-data?name=${encodeURIComponent(MemberSpace.getMemberInfo().memberInfo.customSignupFields[0].value)}`)
           .then(response => response.json())
           .then(data => {
             loadingElement.style.display = 'none';
