@@ -187,7 +187,43 @@
           <div class="-mx-4 flex flex-wrap">
             <div class="w-full px-4">
               <!-- Embedded ticket form -->
-              <iframe data-tally-src="https://tally.so/embed/w2BoZD?alignLeft=1&hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="358" frameborder="0" marginheight="0" marginwidth="0" title="New Zapier Ticket"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>        </div>
+              <div class="tally-iframe-container">
+
+              <script>
+                window.onload = function() {
+                  // Assuming the value you want to interpolate is stored in a variable called userId
+                  var userId = MemberSpace.getMemberInfo().memberInfo.customSignupFields[0].value; // Replace this with the actual way you get the user id
+
+                  var iframe = document.createElement('iframe');
+                  iframe.setAttribute('data-tally-src', `https://tally.so/embed/w2BoZD?user_id=${userId}&alignLeft=1&hideTitle=1&dynamicHeight=1`);
+                  iframe.setAttribute('loading', 'lazy');
+                  iframe.setAttribute('width', '100%');
+                  iframe.setAttribute('height', '358');
+                  iframe.setAttribute('frameborder', '0');
+                  iframe.setAttribute('marginheight', '0');
+                  iframe.setAttribute('marginwidth', '0');
+                  iframe.setAttribute('title', 'New Zapier Ticket');
+
+                  document.getElementById('tally-iframe-container').appendChild(iframe);
+
+                  var script = document.createElement('script');
+                  script.src = "https://tally.so/widgets/embed.js";
+                  script.onload = function() {
+                    if (typeof Tally !== 'undefined') {
+                      Tally.loadEmbeds();
+                    } else {
+                      document.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e) {
+                        e.src = e.dataset.tallySrc;
+                      });
+                    }
+                  };
+                  script.onerror = script.onload;
+                  document.body.appendChild(script);
+                }
+              </script>
+
+              <!-- <iframe data-tally-src="https://tally.so/embed/w2BoZD?user_id=${}&alignLeft=1&hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="358" frameborder="0" marginheight="0" marginwidth="0" title="New Zapier Ticket"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>         -->
+            </div>
       </div>
     </section>
     <!-- ====== About Section End -->
