@@ -18,7 +18,7 @@ exports.handler = async function(event, context) {
     const cards = await cardsResponse.json();
   
     const totalTickets = cards.length;
-    const openTickets = cards.filter(card => !card.closed).length;
+    const openTickets = cards.filter(card => !card.dueComplete).length;
   
     return {
       statusCode: 200,
