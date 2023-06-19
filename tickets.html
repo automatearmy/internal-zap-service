@@ -357,8 +357,8 @@
               listItem.appendChild(leftDiv);
     
               const status = document.createElement('span');
-              status.textContent = ticket.closed ? 'Closed' : 'Open';
-              status.classList.add('ticket-status', ticket.closed ? 'closed' : 'open');
+              status.textContent = ticket.dueComplete ? 'Closed' : 'Open';
+              status.classList.add('ticket-status', ticket.dueComplete ? 'closed' : 'open');
               
               listItem.appendChild(status);
               
